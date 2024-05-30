@@ -224,7 +224,7 @@ def _linting_helper(document: workspace.Document) -> None:
 
         if settings["reportingScope"] == "file" and utils.is_match(
             settings["ignorePatterns"], document.path
-        ):
+        ) and not utils.is_match(settings["allowPatterns"], document.path):
             log_warning(
                 f"Skipping file due to `mypy-type-checker.ignorePatterns` match: {document.path}"
             )
